@@ -1,2 +1,2 @@
-aws_region = "us-east-1"
-site_domain = "your.domain"
+aws_region = "ap-southeast-7"
+site_domain = "yourdomain"
