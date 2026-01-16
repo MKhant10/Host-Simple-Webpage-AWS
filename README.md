@@ -46,7 +46,7 @@ Include -> Specific zone -> the domain you want to manage with Cloudflare (htet-
 After creating token, record it somewhere safe. Create an environment variable named CLOUDFLARE_API_TOKEN and set it to your Cloudflare API token.
 
 ```bash
-$ export CLOUDFLARE_API_TOKEN=
+export CLOUDFLARE_API_TOKEN=
 ```
 
 Terraform will use this environment variable to authenticate the Cloudflare Provider.
@@ -54,7 +54,7 @@ Terraform will use this environment variable to authenticate the Cloudflare Prov
 ## Clone the repository
 
 ```bash
-$ git clone https://github.com/MKhant10/Host-Simple-Webpage-AWS.git
+git clone https://github.com/MKhant10/Host-Simple-Webpage-AWS.git
 ```
 
 ## Set variable values
@@ -62,7 +62,7 @@ $ git clone https://github.com/MKhant10/Host-Simple-Webpage-AWS.git
 Copy the contents of `terraform.tfvars.example` into new file name `terraform.tfvars`
 
 ```bash
-$ cp terraform.tfvars.example terraform.tfvars
+cp terraform.tfvars.example terraform.tfvars
 ```
 
 Update the value of site domain to your own domain and set aws_region as you want.
@@ -79,8 +79,10 @@ site_domain = "yourdomain"
 Initialize the Terraform configuration
 
 ```bash
-$ terraform init
+terraform init
+```
 
+```
 Initializing the backend...
 Initializing provider plugins...
 - Reusing previous version of cloudflare/cloudflare from the dependency lock file
@@ -100,8 +102,10 @@ commands will detect it and remind you to do so if necessary.
 ```
 
 ```bash
-$ terraform apply
+terraform apply
+```
 
+```
 ## ...
 Plan: 10 to add, 0 to change, 0 to destroy.
 
@@ -130,8 +134,10 @@ website_bucket_name = "yourdomain"
 Upload your index.html, error.html to S3 bucket.
 
 ```bash
-$ aws s3 cp website/ s3://$(terraform output -raw website_bucket_name)/ --recursive
+aws s3 cp website/ s3://$(terraform output -raw website_bucket_name)/ --recursive
+```
 
+```
 upload: website/index.html to s3://htet-arkar.uk/index.html
 upload: website/logo.png to s3://htet-arkar.uk/logo.png
 upload: website/error.html to s3://htet-arkar.uk/error.html
@@ -145,7 +151,9 @@ First you need to empty the bucket.
 
 ```bash
 aws s3 rm s3://yourbucketname --recursive
+```
 
+```
 delete: s3://htet-arkar.uk/logo.png
 delete: s3://htet-arkar.uk/index.html
 delete: s3://htet-arkar.uk/error.html
@@ -155,7 +163,9 @@ remove resources
 
 ```bash
 terraform destroy
+```
 
+```
 ##...
 Plan: 0 to add, 0 to change, 10 to destroy.
 
